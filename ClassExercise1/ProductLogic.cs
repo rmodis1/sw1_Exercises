@@ -9,14 +9,32 @@ namespace Logic
 		private Dictionary<string, DogLeash> _dogLeash;
 		private Dictionary<string, CatFood> _catFood;
 
-
-        public ProductLogic()
+		public ProductLogic()
 		{
 			_products = new List<Product>
-			{
-
-			}
-		}
+            {
+                new DogLeash
+                {
+                    Description = "A rope dog leash made from strong rope.",
+                    LengthInches = 60,
+                    Material = "Rope",
+                    Name = "Rope Dog Leash",
+                    Price = 21.00m,
+                    Quantity = 0
+                },
+               
+                new CatFood
+                {
+                    Quantity = 48,
+                    Price = 12.99m,
+                    Name = "Fancy Cat Food",
+                    Description = "Food that isn't only delicious, but made from the finest of all cat food stuff",
+                    KittenFood = false
+                }
+            };
+            _dogLeash = new Dictionary<string, DogLeash>();
+            _catFood = new Dictionary<string, CatFood>();
+        }
 
 		public void AddProduct(Product product)
 		{
