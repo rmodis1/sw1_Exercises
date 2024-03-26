@@ -75,8 +75,14 @@ internal class Program
             {
                 Console.WriteLine("What kind of dog leash would you like to see?");
                 DogLeash dogLeash = productLogic.GetDogLeashByName(Console.ReadLine());
-                Console.WriteLine(JsonSerializer.Serialize(dogLeash));
-                
+                if (dogLeash is null)
+                {
+                    Console.WriteLine("Sorry, this product could not be found.");
+                }
+                else
+                {
+                    Console.WriteLine(JsonSerializer.Serialize(dogLeash));
+                }
             }
 
             Console.WriteLine("Press 1 to add cat food");
