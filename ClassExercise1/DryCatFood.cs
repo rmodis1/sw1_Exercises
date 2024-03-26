@@ -2,7 +2,11 @@
 
 namespace Products
 {
-	public class DryCatFood: CatFood
+    /// <summary>
+    /// Creates a class that inherits from CatFood
+    /// </summary>
+
+    public class DryCatFood: CatFood
 	{
         public double WeightPounds { get; set; }
     }

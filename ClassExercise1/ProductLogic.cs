@@ -3,8 +3,13 @@ using Products;
 
 namespace Logic
 {
-	class ProductLogic
+    /// <summary>
+	/// Provides basic functions for the program: adding and retrieving data from lists and dictionaries
+	/// </summary>
+
+    class ProductLogic
 	{
+		
         private List<Product> _products = new List<Product>() { };
 		private Dictionary<string, DogLeash> _dogLeash = new Dictionary<string, DogLeash>(){};
 		private Dictionary<string, CatFood> _catFood = new Dictionary<string, CatFood>{ };
