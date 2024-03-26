@@ -4,8 +4,8 @@ namespace Products
 {
     class DogLeash : Product
     {
-        int LengthInches { get; set; }
-        string Material { get; set; }
+        public int LengthInches { get; set; }
+        public string Material { get; set; }
     }
 }
 
