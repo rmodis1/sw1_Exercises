@@ -32,9 +32,6 @@ internal class Program
                 Console.WriteLine("How many bags are you adding?");
                 catFood.Quantity = int.Parse(Console.ReadLine());
 
-                Console.WriteLine("How heavy is the cat food?");
-                catFood.WeightPounds = int.Parse(Console.ReadLine());
-
                 Console.WriteLine("Is this food appropriate for kittens? True/False?");
                 catFood.KittenFood = bool.Parse(Console.ReadLine());
 
