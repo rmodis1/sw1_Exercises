@@ -2,6 +2,7 @@
 using System.Text.Json;
 using Logic;
 using Products;
+using Display;
 
 internal class Program
 {
@@ -9,11 +10,8 @@ internal class Program
     private static void Main(string[] args)
     {
         ProductLogic productLogic = new ProductLogic();
+        DisplayToUser.Display();
 
-        Console.WriteLine("Press 1 to add cat food");
-        Console.WriteLine("Press 2 to add a dog leash");
-        Console.WriteLine("Press 3 to view a dog leash");
-        Console.WriteLine("Type 'exit' to quit");
         string userInput = Console.ReadLine();
         while (userInput.ToLower() != "exit")
         {
@@ -50,10 +48,7 @@ internal class Program
                 }
             }
 
-            Console.WriteLine("Press 1 to add cat food");
-            Console.WriteLine("Press 2 to add a dog leash");
-            Console.WriteLine("Press 3 to view a dog leash");
-            Console.WriteLine("Type 'exit' to quit");
+            DisplayToUser.Display();
             userInput = Console.ReadLine();
         }
     }
