@@ -1,6 +1,5 @@
 ﻿using System;
 using Logic;
-using Logic; 
 
 namespace Products
 {
@@ -25,7 +24,6 @@ namespace Products
                 catFood.Name = Console.ReadLine();
                 Console.WriteLine("Please enter the name of the product.");
             }
-                
 
             Console.WriteLine("How much does the cat food cost?");
             bool properCost = false;

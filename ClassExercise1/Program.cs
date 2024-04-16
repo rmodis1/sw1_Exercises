@@ -60,6 +60,10 @@ internal class Program
                     Console.WriteLine(product);
                 }
             }
+            else
+            {
+                Console.WriteLine("Please enter one of the options in the menu.");
+            }
 
             Display();
             userInput = Console.ReadLine();
