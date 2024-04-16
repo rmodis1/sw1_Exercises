@@ -12,8 +12,10 @@ namespace Products
     {
         public bool KittenFood { get; set; }
 
-        public static void AddCatFood(CatFood catFood)
+        public static CatFood ReadFromUser()
         {
+            CatFood catFood = new CatFood();
+
             Console.WriteLine("Adding new brand of cat food!");
 
             Console.WriteLine("What is the name of the cat food?");
@@ -30,6 +32,8 @@ namespace Products
 
             Console.WriteLine("Please add a short description of the product for customers: ");
             catFood.Description = Console.ReadLine();
+
+            return catFood;
         }
     }
 }

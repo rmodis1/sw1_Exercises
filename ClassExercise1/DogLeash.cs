@@ -9,10 +9,12 @@ namespace Products
     public class DogLeash : Product
     {
         public int LengthInches { get; set; }
-        public string Material { get; set; }
+        public string? Material { get; set; }
 
-        public static void AddDogLeash(DogLeash dogLeash)
+        public static DogLeash ReadFromUser()
         {
+            DogLeash dogLeash = new DogLeash();
+
             Console.WriteLine("Adding new dog leash!");
 
             Console.WriteLine("What is the name of the dog leash?");

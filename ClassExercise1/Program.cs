@@ -2,7 +2,7 @@
 using System.Text.Json;
 using Logic;
 using Products;
-using Display;
+using ClassExercise1;
 
 internal class Program
 {
@@ -10,25 +10,21 @@ internal class Program
     private static void Main(string[] args)
     {
         ProductLogic productLogic = new ProductLogic();
-        DisplayToUser.Display();
+        Display();
 
-        string userInput = Console.ReadLine();
-        while (userInput.ToLower() != "exit")
+        string? userInput = Console.ReadLine();
+        while (!userInput.Equals("exit", StringComparison.OrdinalIgnoreCase))
         {
             if (userInput == "1")
             {
-                CatFood catFood = new CatFood();
-
-                CatFood.AddCatFood(catFood);
+                CatFood catFood = CatFood.ReadFromUser();
 
                 productLogic.AddProduct(catFood);
                 Console.WriteLine("Added cat food!");
             }
             if (userInput == "2")
             {
-                DogLeash dogLeash = new DogLeash();
-
-                DogLeash.AddDogLeash(dogLeash);
+                DogLeash dogLeash = DogLeash.ReadFromUser();
 
                 productLogic.AddProduct(dogLeash);
                 Console.WriteLine("Added dog leash!");
@@ -45,6 +41,7 @@ internal class Program
                 else
                 {
                     Console.WriteLine(JsonSerializer.Serialize(dogLeash));
+                    Console.WriteLine($"Price={dogLeash.Price}, Discounted Price={dogLeash.Price.DiscountThisPrice()}");
                 }
             }
             if (userInput == "4")
@@ -64,8 +61,18 @@ internal class Program
                 }
             }
 
-            DisplayToUser.Display();
+            Display();
             userInput = Console.ReadLine();
         }
+    }
+
+    public static void Display()
+    {
+        Console.WriteLine("Press 1 to add cat food");
+        Console.WriteLine("Press 2 to add a dog leash");
+        Console.WriteLine("Press 3 to view a dog leash");
+        Console.WriteLine("Press 4 to view in stock items");
+        Console.WriteLine("Press 5 to view out of stock items");
+        Console.WriteLine("Type 'exit' to quit\n");
     }
 }
