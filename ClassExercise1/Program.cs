@@ -47,6 +47,22 @@ internal class Program
                     Console.WriteLine(JsonSerializer.Serialize(dogLeash));
                 }
             }
+            if (userInput == "4")
+            {
+                List<string> inStockProducts = productLogic.GetOnlyInStockProducts();
+                foreach (var product in inStockProducts)
+                {
+                    Console.WriteLine($"\n{product}\n");
+                }
+            }
+            if (userInput == "5")
+            {
+                List<string> inStockProducts = productLogic.GetOnlyOutOfStockProducts();
+                foreach (var product in inStockProducts)
+                {
+                    Console.WriteLine($"\n{product}\n");
+                }
+            }
 
             DisplayToUser.Display();
             userInput = Console.ReadLine();

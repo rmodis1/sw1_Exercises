@@ -1,18 +1,23 @@
 ﻿using System;
+using Interface;
 using Products;
 
 namespace Logic
 {
-    /// <summary>
+	/// <summary>
 	/// Provides basic functions for the program: adding and retrieving data from lists and dictionaries
 	/// </summary>
 
-    class ProductLogic
+	public class ProductLogic : IProductLogic
 	{
-		
-        private List<Product> _products = new List<Product>() { };
-		private Dictionary<string, DogLeash> _dogLeash = new Dictionary<string, DogLeash>(){};
-		private Dictionary<string, CatFood> _catFood = new Dictionary<string, CatFood>{ };
+
+		private List<Product> _products = new List<Product>()
+		{
+			new Product{Name = "Leather Leash", Price = 26.99M, Quantity = 5},
+			new Product{Name = "Bedazzled Leash", Price = 13.99M, Quantity = 0}
+		};
+		private Dictionary<string, DogLeash> _dogLeash = new Dictionary<string, DogLeash>() { };
+		private Dictionary<string, CatFood> _catFood = new Dictionary<string, CatFood> { };
 
 		public void AddProduct(Product product)
 		{
@@ -44,6 +49,20 @@ namespace Logic
 				return null;
 			}
 		}
-	}
+
+        public List<string> GetOnlyInStockProducts()
+        {
+            return _products.Where(product => product.Quantity > 0)
+				.Select(prod => prod.Name)
+                .ToList();
+        }
+
+        public List<string> GetOnlyOutOfStockProducts()
+        {
+            return _products.Where(product => product.Quantity == 0)
+                .Select(product => product.Name)
+                .ToList();
+        }
+    }
 }
 
