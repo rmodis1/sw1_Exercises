@@ -51,14 +51,14 @@ namespace Logic
 			}
 		}
 
-        public List<string> GetOnlyInStockProducts()
+        public List<string?> GetOnlyInStockProducts()
         {
             return _products.Where(product => product.Quantity > 0)
 				.Select(prod => prod.Name)
                 .ToList();
         }
 
-        public List<string> GetOnlyOutOfStockProducts()
+        public List<string?> GetOnlyOutOfStockProducts()
         {
             return _products.Where(product => product.Quantity == 0)
                 .Select(product => product.Name)

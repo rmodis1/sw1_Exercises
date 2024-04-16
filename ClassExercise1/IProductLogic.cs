@@ -11,9 +11,9 @@ namespace Interface
 
 		public DogLeash GetDogLeashByName(string name);
 
-        public List<string> GetOnlyInStockProducts();
+        public List<string?> GetOnlyInStockProducts();
 
-		public List<string> GetOnlyOutOfStockProducts();
+		public List<string?> GetOnlyOutOfStockProducts();
     }
 }
 
