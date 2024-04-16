@@ -46,6 +46,7 @@ namespace Logic
             }
 			catch(Exception ex)
 			{
+				Console.WriteLine(ex);
 				return null;
 			}
 		}

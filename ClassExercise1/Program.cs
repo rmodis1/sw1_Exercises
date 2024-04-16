@@ -20,14 +20,14 @@ internal class Program
                 CatFood catFood = CatFood.ReadFromUser();
 
                 productLogic.AddProduct(catFood);
-                Console.WriteLine("Added cat food!");
+                Console.WriteLine("\nAdded cat food!");
             }
             if (userInput == "2")
             {
                 DogLeash dogLeash = DogLeash.ReadFromUser();
 
                 productLogic.AddProduct(dogLeash);
-                Console.WriteLine("Added dog leash!");
+                Console.WriteLine("\nAdded dog leash!");
             }
             if (userInput == "3")
             {
@@ -49,7 +49,7 @@ internal class Program
                 List<string> inStockProducts = productLogic.GetOnlyInStockProducts();
                 foreach (var product in inStockProducts)
                 {
-                    Console.WriteLine($"\n{product}\n");
+                    Console.WriteLine(product);
                 }
             }
             if (userInput == "5")
@@ -57,7 +57,7 @@ internal class Program
                 List<string> inStockProducts = productLogic.GetOnlyOutOfStockProducts();
                 foreach (var product in inStockProducts)
                 {
-                    Console.WriteLine($"\n{product}\n");
+                    Console.WriteLine(product);
                 }
             }
 
@@ -68,7 +68,7 @@ internal class Program
 
     public static void Display()
     {
-        Console.WriteLine("Press 1 to add cat food");
+        Console.WriteLine("\nPress 1 to add cat food");
         Console.WriteLine("Press 2 to add a dog leash");
         Console.WriteLine("Press 3 to view a dog leash");
         Console.WriteLine("Press 4 to view in stock items");
