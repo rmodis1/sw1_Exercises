@@ -46,18 +46,18 @@ internal class Program
             }
             if (userInput == "4")
             {
-                List<string> inStockProducts = productLogic.GetOnlyInStockProducts();
+                List<Product> inStockProducts = productLogic.GetOnlyInStockProducts();
                 foreach (var product in inStockProducts)
                 {
-                    Console.WriteLine(product);
+                    Console.WriteLine(JsonSerializer.Serialize(product));
                 }
             }
             if (userInput == "5")
             {
-                List<string> inStockProducts = productLogic.GetOnlyOutOfStockProducts();
+                List<Product> inStockProducts = productLogic.GetOnlyOutOfStockProducts();
                 foreach (var product in inStockProducts)
                 {
-                    Console.WriteLine(product);
+                    Console.WriteLine(JsonSerializer.Serialize(product));
                 }
             }
             else

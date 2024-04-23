@@ -13,8 +13,8 @@ namespace Logic
 
 		private List<Product> _products = new List<Product>()
 		{
-			new Product{Name = "Leather Leash", Price = 26.99M, Quantity = 5},
-			new Product{Name = "Bedazzled Leash", Price = 13.99M, Quantity = 0}
+			new DogLeash{Name = "Leather Leash", Price = 26.99M, Quantity = 5},
+			new DogLeash{Name = "Bedazzled Leash", Price = 13.99M, Quantity = 0}
 		};
 		private Dictionary<string, DogLeash> _dogLeash = new Dictionary<string, DogLeash>() { };
 		private Dictionary<string, CatFood> _catFood = new Dictionary<string, CatFood> { };
@@ -51,18 +51,16 @@ namespace Logic
 			}
 		}
 
-        public List<string?> GetOnlyInStockProducts()
+        public List<Product> GetOnlyInStockProducts()
         {
             return _products.Where(product => product.Quantity > 0)
-				.Select(prod => prod.Name)
-                .ToList();
+							.ToList();
         }
 
-        public List<string?> GetOnlyOutOfStockProducts()
+        public List<Product> GetOnlyOutOfStockProducts()
         {
             return _products.Where(product => product.Quantity == 0)
-                .Select(product => product.Name)
-                .ToList();
+							.ToList();
         }
     }
 }
