@@ -2,7 +2,7 @@
 using System.Text.Json;
 using Logic;
 using Products;
-using ClassExercise1;
+using Extensions;
 
 internal class Program
 {
@@ -60,6 +60,10 @@ internal class Program
                     Console.WriteLine(JsonSerializer.Serialize(product));
                 }
             }
+            if ( userInput == "6")
+            {
+                Console.WriteLine(productLogic.GetTotalPriceOfInventory());
+            }
             else
             {
                 Console.WriteLine("Please enter one of the options in the menu.");
@@ -77,6 +81,7 @@ internal class Program
         Console.WriteLine("Press 3 to view a dog leash");
         Console.WriteLine("Press 4 to view in stock items");
         Console.WriteLine("Press 5 to view out of stock items");
+        Console.WriteLine("Press 6 to get the total price of the entire inventory");
         Console.WriteLine("Type 'exit' to quit\n");
     }
 }

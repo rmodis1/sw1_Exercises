@@ -61,7 +61,7 @@ namespace Products
             {
                 try
                 {
-                    dogLeash.Quantity = int.Parse(Console.ReadLine());
+                    dogLeash.LengthInches = int.Parse(Console.ReadLine());
                     properLength = true;
                 }
                 catch

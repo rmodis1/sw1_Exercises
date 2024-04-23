@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Interface;
 using Products;
 
@@ -61,6 +62,17 @@ namespace Logic
         {
             return _products.Where(product => product.Quantity == 0)
 							.ToList();
+        }
+
+        public decimal GetTotalPriceOfInventory()
+        {
+			var itemsInInventory = GetOnlyInStockProducts();
+			decimal totalPrice = 0;
+			foreach (var item in itemsInInventory)
+			{
+				totalPrice += item.Quantity * item.Price;
+			}
+			return totalPrice;
         }
     }
 }
