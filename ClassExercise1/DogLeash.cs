@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using Validators;
 
 namespace Products
@@ -18,7 +19,22 @@ namespace Products
             Console.WriteLine("Adding new dog leash!\n");
             Console.WriteLine("Please add JSON information about the dog leash: ");
             string dogLeashInfo = Console.ReadLine();
+            //Add validation when possible!!!
+            //try
+            //{
+            //    var isValid = JsonValue.Parse(dogLeashInfo);
+            //}
+            //catch (FormatException formatException)
+            //{
+            //    Console.WriteLine(formatException);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.ToString());
+            //}
+      
             DogLeash dogLeash = JsonSerializer.Deserialize<DogLeash>(dogLeashInfo);
+
             DogLeashValidator dogLeashValidator = new();
             var results = dogLeashValidator.Validate(dogLeash);
 

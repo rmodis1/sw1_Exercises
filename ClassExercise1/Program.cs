@@ -33,7 +33,7 @@ internal class Program
             }
             if (userInput == "3")
             {
-                Console.WriteLine("What kind of dog leash would you like to see?");
+                Console.WriteLine("What product would you like to view?");
                 Product product = productLogic.GetProductByName<Product>(Console.ReadLine());
 
                 if (product is null)
@@ -80,7 +80,7 @@ internal class Program
     {
         Console.WriteLine("\nPress 1 to add cat food");
         Console.WriteLine("Press 2 to add a dog leash");
-        Console.WriteLine("Press 3 to view a dog leash");
+        Console.WriteLine("Press 3 to view a product");
         Console.WriteLine("Press 4 to view in stock items");
         Console.WriteLine("Press 5 to view out of stock items");
         Console.WriteLine("Press 6 to get the total price of the entire inventory");
