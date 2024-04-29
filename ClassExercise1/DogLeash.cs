@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text.Json;
+using Validators;
 
 namespace Products
 {
@@ -13,73 +15,88 @@ namespace Products
 
         public static DogLeash ReadFromUser()
         {
-            DogLeash dogLeash = new DogLeash();
-
             Console.WriteLine("Adding new dog leash!\n");
+            Console.WriteLine("Please add JSON information about the dog leash: ");
+            string dogLeashInfo = Console.ReadLine();
+            DogLeash dogLeash = JsonSerializer.Deserialize<DogLeash>(dogLeashInfo);
+            DogLeashValidator dogLeashValidator = new();
+            var results = dogLeashValidator.Validate(dogLeash);
 
-            Console.WriteLine("What is the name of the dog leash?");
-            while (string.IsNullOrEmpty(dogLeash.Name))
+            if(!results.IsValid)
             {
-
-                dogLeash.Name = Console.ReadLine();
-                Console.WriteLine("Please enter the name of the product.");
-            }
-
-            Console.WriteLine("How much does the dog leash cost?");
-            bool properCost = false;
-            while (properCost == false)
-            {
-                try
+                foreach(var error in results.Errors)
                 {
-                    dogLeash.Price = decimal.Parse(Console.ReadLine());
-                    properCost = true;
-                }
-                catch
-                {
-                    Console.WriteLine("Please enter a valid decimal value.");
+                    Console.WriteLine($"Property {error.PropertyName} failed validation. Error was {error.ErrorMessage}");
                 }
             }
-
-            Console.WriteLine("How many leashes are you adding?");
-            bool properInventoryAddition = false;
-            while (properInventoryAddition == false)
+            if(results.IsValid)
             {
-                try
-                {
-                    dogLeash.Quantity = int.Parse(Console.ReadLine());
-                    properInventoryAddition = true;
-                }
-                catch
-                {
-                    Console.WriteLine("Please enter a valid integer value.");
-                }
+                Console.WriteLine("\nAdded dog leash!");
             }
 
-            Console.WriteLine("How long is the leash in inches?");
-            bool properLength = false;
-            while (properLength == false)
-            {
-                try
-                {
-                    dogLeash.LengthInches = int.Parse(Console.ReadLine());
-                    properLength = true;
-                }
-                catch
-                {
-                    Console.WriteLine("Please enter a valid integer value for the length of the leash.");
-                }
-            }
+            //Console.WriteLine("What is the name of the dog leash?");
+            //while (string.IsNullOrEmpty(dogLeash.Name))
+            //{
 
-            Console.WriteLine("What is this leash made out of?");
-            while (string.IsNullOrEmpty(dogLeash.Material))
-            {
+            //    dogLeash.Name = Console.ReadLine();
+            //    Console.WriteLine("Please enter the name of the product.");
+            //}
 
-                dogLeash.Material = Console.ReadLine();
-                Console.WriteLine("Please enter the name of the product.");
-            }
+            //Console.WriteLine("How much does the dog leash cost?");
+            //bool properCost = false;
+            //while (properCost == false)
+            //{
+            //    try
+            //    {
+            //        dogLeash.Price = decimal.Parse(Console.ReadLine());
+            //        properCost = true;
+            //    }
+            //    catch
+            //    {
+            //        Console.WriteLine("Please enter a valid decimal value.");
+            //    }
+            //}
 
-            Console.WriteLine("Please add a short description of the product for customers: ");
-            dogLeash.Description = Console.ReadLine();
+            //Console.WriteLine("How many leashes are you adding?");
+            //bool properInventoryAddition = false;
+            //while (properInventoryAddition == false)
+            //{
+            //    try
+            //    {
+            //        dogLeash.Quantity = int.Parse(Console.ReadLine());
+            //        properInventoryAddition = true;
+            //    }
+            //    catch
+            //    {
+            //        Console.WriteLine("Please enter a valid integer value.");
+            //    }
+            //}
+
+            //Console.WriteLine("How long is the leash in inches?");
+            //bool properLength = false;
+            //while (properLength == false)
+            //{
+            //    try
+            //    {
+            //        dogLeash.LengthInches = int.Parse(Console.ReadLine());
+            //        properLength = true;
+            //    }
+            //    catch
+            //    {
+            //        Console.WriteLine("Please enter a valid integer value for the length of the leash.");
+            //    }
+            //}
+
+            //Console.WriteLine("What is this leash made out of?");
+            //while (string.IsNullOrEmpty(dogLeash.Material))
+            //{
+
+            //    dogLeash.Material = Console.ReadLine();
+            //    Console.WriteLine("Please enter the name of the product.");
+            //}
+
+            //Console.WriteLine("Please add a short description of the product for customers: ");
+            //dogLeash.Description = Console.ReadLine();
 
             return dogLeash;
         }

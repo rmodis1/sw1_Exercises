@@ -9,11 +9,13 @@ namespace Interface
 
 		public List<Product> GetAllProducts();
 
-		public DogLeash GetDogLeashByName(string name);
+		public T GetProductByName<T>(string name) where T: Product;
 
         public List<Product> GetOnlyInStockProducts();
 
 		public List<Product> GetOnlyOutOfStockProducts();
+
+		public decimal GetTotalPriceOfInventory();
     }
 }
 

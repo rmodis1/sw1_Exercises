@@ -39,11 +39,12 @@ namespace Logic
 			return _products;
 		}
 
-		public DogLeash GetDogLeashByName(string name)
+		public T GetProductByName<T>(string name) where T: Product
 		{
 			try
 			{
-                return _dogLeash[name];
+				var selectedProduct = _products.FirstOrDefault(product => product.Name == name);
+				return selectedProduct as T;
             }
 			catch(Exception ex)
 			{

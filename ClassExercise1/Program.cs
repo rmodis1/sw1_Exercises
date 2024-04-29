@@ -3,13 +3,16 @@ using System.Text.Json;
 using Logic;
 using Products;
 using Extensions;
+using Microsoft.Extensions.DependencyInjection;
+using Interface;
 
 internal class Program
 {
-
     private static void Main(string[] args)
     {
-        ProductLogic productLogic = new ProductLogic();
+        var serviceCollection = CreateServiceCollection();
+        var productLogic = serviceCollection.GetService<IProductLogic>();
+
         Display();
 
         string? userInput = Console.ReadLine();
@@ -27,21 +30,20 @@ internal class Program
                 DogLeash dogLeash = DogLeash.ReadFromUser();
 
                 productLogic.AddProduct(dogLeash);
-                Console.WriteLine("\nAdded dog leash!");
             }
             if (userInput == "3")
             {
                 Console.WriteLine("What kind of dog leash would you like to see?");
-                DogLeash dogLeash = productLogic.GetDogLeashByName(Console.ReadLine());
+                Product product = productLogic.GetProductByName<Product>(Console.ReadLine());
 
-                if (dogLeash is null)
+                if (product is null)
                 {
                     Console.WriteLine("Sorry, this product could not be found.");
                 }
                 else
                 {
-                    Console.WriteLine(JsonSerializer.Serialize(dogLeash));
-                    Console.WriteLine($"Price={dogLeash.Price}, Discounted Price={dogLeash.Price.DiscountThisPrice()}");
+                    Console.WriteLine(JsonSerializer.Serialize(product));
+                    Console.WriteLine($"Price={product.Price}, Discounted Price={product.Price.DiscountThisPrice()}");
                 }
             }
             if (userInput == "4")
@@ -83,5 +85,12 @@ internal class Program
         Console.WriteLine("Press 5 to view out of stock items");
         Console.WriteLine("Press 6 to get the total price of the entire inventory");
         Console.WriteLine("Type 'exit' to quit\n");
+    }
+
+    public static IServiceProvider CreateServiceCollection()
+    {
+        return new ServiceCollection()
+            .AddTransient<IProductLogic, ProductLogic>()
+            .BuildServiceProvider();
     }
 }
