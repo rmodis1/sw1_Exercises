@@ -1,0 +1,11 @@
+﻿using System;
+namespace ClassExercise1
+{
+	public class PetStore
+	{
+		public PetStore()
+		{
+		}
+	}
+}
+
