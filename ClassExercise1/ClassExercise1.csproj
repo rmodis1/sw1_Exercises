@@ -11,4 +11,15 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="FluentValidation" Version="11.9.1" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PetStore.Data\PetStore.Data.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Logic\" />
+    <None Remove="Validators\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logic\" />
+    <Folder Include="Validators\" />
+  </ItemGroup>
 </Project>

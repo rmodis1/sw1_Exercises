@@ -4,7 +4,8 @@ using Logic;
 using Products;
 using Extensions;
 using Microsoft.Extensions.DependencyInjection;
-using Interface;
+using IProduct;
+using PetStore.Data; 
 
 internal class Program
 {
@@ -20,55 +21,30 @@ internal class Program
         {
             if (userInput == "1")
             {
-                CatFood catFood = CatFood.ReadFromUser();
+                Console.WriteLine("Please add a product in JSON format");
+                var informationEntered = Console.ReadLine();
+                var product = JsonSerializer.Deserialize<Product>(informationEntered);
+                productLogic.AddProduct(product);
 
-                productLogic.AddProduct(catFood);
-                Console.WriteLine("\nAdded cat food!");
+                Console.WriteLine("\nAdded product!");
             }
             if (userInput == "2")
             {
-                DogLeash dogLeash = DogLeash.ReadFromUser();
 
-                productLogic.AddProduct(dogLeash);
-            }
-            if (userInput == "3")
-            {
-                Console.WriteLine("What product would you like to view?");
-                Product product = productLogic.GetProductByName<Product>(Console.ReadLine());
+                Console.WriteLine("What is the id of the product you would like to view?");
+                try
+                {
+                    int id = int.Parse(Console.ReadLine());
+                    var product = productLogic.GetProductById(id);
+                    Console.WriteLine($"\n{JsonSerializer.Serialize(product)}");
 
-                if (product is null)
-                {
-                    Console.WriteLine("Sorry, this product could not be found.");
+                    Console.WriteLine($"\nPrice={product.Price}, Discounted Price={product.Price.DiscountThisPrice()}");
                 }
-                else
+                catch (Exception e)
                 {
-                    Console.WriteLine(JsonSerializer.Serialize(product));
-                    Console.WriteLine($"Price={product.Price}, Discounted Price={product.Price.DiscountThisPrice()}");
+                    Console.WriteLine($"\n{e.Message}");
+                    Console.WriteLine("\nSorry, please enter a valid id number.");
                 }
-            }
-            if (userInput == "4")
-            {
-                List<Product> inStockProducts = productLogic.GetOnlyInStockProducts();
-                foreach (var product in inStockProducts)
-                {
-                    Console.WriteLine(JsonSerializer.Serialize(product));
-                }
-            }
-            if (userInput == "5")
-            {
-                List<Product> inStockProducts = productLogic.GetOnlyOutOfStockProducts();
-                foreach (var product in inStockProducts)
-                {
-                    Console.WriteLine(JsonSerializer.Serialize(product));
-                }
-            }
-            if ( userInput == "6")
-            {
-                Console.WriteLine(productLogic.GetTotalPriceOfInventory());
-            }
-            else
-            {
-                Console.WriteLine("Please enter one of the options in the menu.");
             }
 
             Display();
@@ -78,12 +54,8 @@ internal class Program
 
     public static void Display()
     {
-        Console.WriteLine("\nPress 1 to add cat food");
-        Console.WriteLine("Press 2 to add a dog leash");
-        Console.WriteLine("Press 3 to view a product");
-        Console.WriteLine("Press 4 to view in stock items");
-        Console.WriteLine("Press 5 to view out of stock items");
-        Console.WriteLine("Press 6 to get the total price of the entire inventory");
+        Console.WriteLine("\nPress 1 to add a product");
+        Console.WriteLine("Press 2 to view a product");
         Console.WriteLine("Type 'exit' to quit\n");
     }
 
@@ -91,6 +63,7 @@ internal class Program
     {
         return new ServiceCollection()
             .AddTransient<IProductLogic, ProductLogic>()
+            .AddTransient<IProductRepository, ProductRepository>()
             .BuildServiceProvider();
     }
 }
