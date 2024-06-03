@@ -15,8 +15,7 @@ namespace PetStore.Data.Migrations
                 name: "OrderId",
                 table: "Products",
                 type: "INTEGER",
-                nullable: false,
-                defaultValue: 0);
+                nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "Orders",
