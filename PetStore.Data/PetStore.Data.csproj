@@ -13,7 +13,4 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ClassExercise1\ClassExercise1.csproj" />
-  </ItemGroup>
 </Project>

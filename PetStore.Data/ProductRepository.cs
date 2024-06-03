@@ -1,9 +1,8 @@
-﻿using System;
-using Products;
+﻿using Products;
 
 namespace PetStore.Data
 {
-	public class ProductRepository: IProductRepository
+    public class ProductRepository: IProductRepository
 	{
         private readonly ProductContext _dbContext;
 

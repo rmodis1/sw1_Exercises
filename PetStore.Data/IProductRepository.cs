@@ -1,9 +1,8 @@
-﻿using System;
-using Products;
+﻿using Products;
 
 namespace PetStore.Data
 {
-	public interface IProductRepository
+    public interface IProductRepository
 	{
 		void AddProduct(Product product);
 		Product GetProductById(int productId);
