@@ -48,14 +48,23 @@ internal class Program
                     Console.WriteLine("\nSorry, please enter a valid id number.");
                 }
             }
-            else if (userInput == "3")
+            else if (userInput =="3")
+            {
+                List <Product> products = productLogic.GetAllProducts();
+                foreach (var product in products)
+                {
+                    Console.WriteLine($"{JsonSerializer.Serialize(product)}");
+                }
+                Console.ReadLine();
+            }
+            else if (userInput == "4")
             {
                 Console.WriteLine("Add an order in JSON format");
                 var informationEntered = Console.ReadLine();
                 var order = JsonSerializer.Deserialize<Order>(informationEntered);
                 productLogic.AddOrder(order);
             }
-            else if (userInput == "4")
+            else if (userInput == "5")
             {
                 Console.WriteLine("What is the id of the order you would like to view?");
                 try
@@ -80,8 +89,9 @@ internal class Program
     {
         Console.WriteLine("\nPress 1 to add a product");
         Console.WriteLine("Press 2 to view a product");
-        Console.WriteLine("Press 3 to add an order");
-        Console.WriteLine("Press 4 to get an order");
+        Console.WriteLine("Press 3 to view all products");
+        Console.WriteLine("Press 4 to add an order");
+        Console.WriteLine("Press 5 to get an order");
         Console.WriteLine("Type 'exit' to quit\n");
     }
 
