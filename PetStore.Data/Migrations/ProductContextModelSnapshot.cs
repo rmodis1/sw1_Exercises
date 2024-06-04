@@ -43,7 +43,7 @@ namespace PetStore.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Price")
@@ -63,9 +63,7 @@ namespace PetStore.Data.Migrations
                 {
                     b.HasOne("PetStore.Data.Order", null)
                         .WithMany("Products")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("PetStore.Data.Order", b =>
